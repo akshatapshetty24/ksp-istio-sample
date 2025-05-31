@@ -19,5 +19,11 @@ kubectl apply -f nginx-gateway.yaml
 kubectl apply -f nginx-destinationrule.yaml
 kubectl apply -f nginx-virtualservice.yaml
 
+nohup kubectl port-forward svc/nginx-sample-svc 80:80 --address <nodeip> &
+[1] 18218
+watch -n 1 'curl -H "Connection: close" http://<clusterip>:80'
+
+
+
 
 
