@@ -1,1 +1,24 @@
 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-sample
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: nginx-sample
+        version: v1
+    spec:
+      containers:
+      - name: nginx
+        image: hashicorp/http-echo
+        args:
+        - "-text=Hello from v1"
+        ports:
+        - containerPort: 5678
